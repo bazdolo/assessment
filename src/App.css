@@ -25,14 +25,10 @@ input {
 	background-color: #1b3f82;
 	color: white;
 	border-radius: 20px;
-	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: bold;
 	padding: 5px;
 	padding-right: 1vw;
 	padding-left: 1vw;
-}
-
-.number-input {
 	font-size: 1.5rem;
 	text-align: center;
 }
