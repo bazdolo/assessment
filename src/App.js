@@ -2,24 +2,20 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log('working');
+	};
+
+	return (
+		<div className="App">
+			<form onSubmit={handleSubmit}>
+				<label>Enter any number below 1 milion</label>
+				<input className="number-input" type="number" name="name" />
+				<input className="submit-button" type="submit" value="Submit" />
+			</form>
+		</div>
+	);
 }
 
 export default App;
