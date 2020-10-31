@@ -78,7 +78,51 @@ test('99 to equal ninety-nine', () => {
 });
 
 // Extends Boundary
-test('100 to equal Number not within range', () => {
+// test('100 to equal Number not within range', () => {
+// 	const result = numbersToWordsHelper(100);
+// 	expect(result).toBe('Number not within range');
+// });
+
+////// Test cases for between 100 - 1999
+
+// Normal mid point value with 'and'
+test('eleven hundred and fifty', () => {
+	const result = numbersToWordsHelper(1150);
+	expect(result).toBe('eleven hundred and fifty');
+});
+
+// Normal mid point value without 'and'
+test('1200 to equal twelve hundred', () => {
+	const result = numbersToWordsHelper(1200);
+	expect(result).toBe('twelve hundred');
+});
+
+// Normal mid point value without -
+test('1250 to equal twelve hundred and fifty', () => {
+	const result = numbersToWordsHelper(1250);
+	expect(result).toBe('twelve hundred and fifty');
+});
+
+// Normal mid point value with -
+test('1255 to equal one thousand two hundred and fifty-five', () => {
+	const result = numbersToWordsHelper(1255);
+	expect(result).toBe('twelve hundred and fifty-five');
+});
+
+// Lower Boundary
+test('100 to equal one hundred', () => {
 	const result = numbersToWordsHelper(100);
+	expect(result).toBe('one hundred');
+});
+
+// Upper Boundary under 2000
+test('1999 to equal nineten hundred and ninety-nine', () => {
+	const result = numbersToWordsHelper(1999);
+	expect(result).toBe('nineteen hundred and ninety-nine');
+});
+
+// Extends Boundary
+test('2000 to equal Number not within range', () => {
+	const result = numbersToWordsHelper(2000);
 	expect(result).toBe('Number not within range');
 });

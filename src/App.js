@@ -26,17 +26,24 @@ const units = [
 
 const tens = [ null, null, 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety' ];
 
-export const numbersToWordsHelper = (num) => {
+export const numbersToWordsHelper = (num, and = '') => {
 	if (num < 0) return 'Number not within range';
 	if (num < 20) {
-		return units[num];
+		return and + units[num];
 	}
 	if (num < 100) {
 		const remainder = num % 10;
 		if (!remainder) {
-			return tens[Math.floor(num / 10)];
+			return and + tens[Math.floor(num / 10)];
 		}
-		return tens[Math.floor(num / 10)] + '-' + numbersToWordsHelper(remainder);
+		return and + tens[Math.floor(num / 10)] + '-' + numbersToWordsHelper(remainder);
+	}
+	if (num < 2000) {
+		const remainder = num % 100;
+		if (!remainder) {
+			return units[Math.floor(num / 100)] + ' hundred';
+		}
+		return units[Math.floor(num / 100)] + ' hundred ' + numbersToWordsHelper(remainder, 'and ');
 	} else return 'Number not within range';
 };
 
@@ -54,7 +61,7 @@ function App() {
 		<div className="App">
 			<form onSubmit={handleSubmit}>
 				<label>Enter any number from zero to below a million</label>
-				<input className="number-input" type="number" name="name" />
+				<input className="number-input" type="number" autocomplete="off" />
 				<input className="submit-button" type="submit" value="Submit" />
 			</form>
 			<div>{num2Word}</div>
