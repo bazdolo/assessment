@@ -44,6 +44,14 @@ export const numbersToWordsHelper = (num, and = '') => {
 			return units[Math.floor(num / 100)] + ' hundred';
 		}
 		return units[Math.floor(num / 100)] + ' hundred ' + numbersToWordsHelper(remainder, 'and ');
+	}
+	if (num < 100000) {
+		const remainder = num % 1000;
+		if (!remainder) {
+			return numbersToWordsHelper(Math.floor(num / 1000)) + ' thousand';
+		}
+
+		return numbersToWordsHelper(Math.floor(num / 1000)) + ' thousand ' + numbersToWordsHelper(remainder, 'and ');
 	} else return 'Number not within range';
 };
 
@@ -60,8 +68,8 @@ function App() {
 	return (
 		<div className="App">
 			<form onSubmit={handleSubmit}>
-				<label>Enter any number from zero to below a million</label>
-				<input className="number-input" type="number" autocomplete="off" />
+				<label>Enter any number from 0 - 99999</label>
+				<input className="number-input" type="number" autoComplete="off" />
 				<input className="submit-button" type="submit" value="Submit" />
 			</form>
 			<div>{num2Word}</div>
