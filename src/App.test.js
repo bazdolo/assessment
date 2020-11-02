@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react';
 import ReactDOM from 'react-dom';
-import App, { numbersToWordsHelper } from './App';
+import App from './App';
+import { numbersToWordsHelper } from './numberHelper.js';
 
 test('renders form without crashing', () => {
 	const div = document.createElement('div');
@@ -204,7 +204,6 @@ test('99999 to equal ninety-nine thousand nine hundred and ninety-nine', () => {
 });
 
 // extends upper boundary
-
 test('1000000 to equal Number not within range', () => {
 	const result = numbersToWordsHelper(1000000);
 	expect(result).toBe('Number not within range');
