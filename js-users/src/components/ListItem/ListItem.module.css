@@ -1,0 +1,10 @@
+.list_item {
+	display: flex;
+	/* height: 70px; */
+	background-color: #f2dfa6;
+	margin: 1rem;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 0.75rem;
+}

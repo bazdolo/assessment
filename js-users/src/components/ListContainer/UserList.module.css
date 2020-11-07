@@ -1,0 +1,7 @@
+.list_container {
+	border: 2px solid #e0c385;
+	max-height: 600px;
+	width: 50%;
+	min-width: 300px;
+	overflow-y: scroll;
+}
