@@ -10,8 +10,6 @@ body {
 		'Droid Sans', 'Helvetica Neue', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	/* font-family: Roboto Slab; */
-	font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 code {
@@ -35,8 +33,12 @@ code {
 }
 
 .page-active {
-	color: #fff;
-	background: #6c7ac9;
+	color: #faf3d1;
+	background: #816541;
+	border-radius: 0.75rem;
+	padding: 0 5px 0 5px;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,500,700');
+.page-active a:focus {
+	outline: none !important;
+}

@@ -7,16 +7,13 @@
 	justify-content: center;
 	font-size: calc(4px + 2vmin);
 	background-color: #faf3d1;
-	/* color: #99784d; */
 	color: hsl(32deg 33% 33%);
-	/* font-family: Roboto Slab; */
-	/* font-family: Georgia, 'Times New Roman', Times, serif; */
-	font-family: monospace;
-	/* font-weight: bold; */
+
+	font-family: Chicle;
 }
 
 p {
 	margin: 2px;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,500,700');
+@import url('https://fonts.googleapis.com/css2?family=Chicle&display=swap');

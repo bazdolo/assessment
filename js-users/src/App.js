@@ -1,7 +1,9 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import EditUser from './pages/EditUser';
 
-import UserList from './components/ListContainer/UserList';
+import UserList from './components/UserList/UserList';
 import './App.css';
 
 function App() {
@@ -9,9 +11,12 @@ function App() {
 		<div className="App">
 			<Router>
 				<Switch>
-					<Router>
-						<UserList />
-					</Router>
+					<Route exact path="/">
+						<Home />
+					</Route>
+					<Route exact path="/edit/:id">
+						<EditUser />
+					</Route>
 				</Switch>
 			</Router>
 		</div>

@@ -1,10 +1,37 @@
 .list_item {
 	display: flex;
-	/* height: 70px; */
 	background-color: #f2dfa6;
 	margin: 1rem;
+	justify-content: space-around;
+	align-items: center;
+	border-radius: 0.75rem;
+	height: 200px;
+}
+
+.list_item_disabled {
+	text-decoration: line-through;
+}
+
+.details_container {
+	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border-radius: 0.75rem;
+}
+
+.user_icon {
+	padding: 10px;
+	border: 1px dashed #99784d;
+}
+
+.icon_wrapper {
+	display: flex;
+	height: 40%;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.link {
+	color: hsl(32deg 33% 33%);
 }
