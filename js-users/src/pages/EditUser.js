@@ -1,27 +1,11 @@
 import React from 'react';
-import { useLocation } from 'react-router';
-import { FaUserAlt } from 'react-icons/fa';
-import styles from './EditUser.module.css';
+import { useLocation, useParams } from 'react-router';
+import Form from '../components/Form/Form';
+import { editDetails } from '../WebHelpers';
 
 export default function EditUser() {
-	const location = useLocation();
-	console.log(location);
+	const { state: { first_name, last_name } } = useLocation();
+	const { id } = useParams();
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		console.log(e.target[0].value);
-	};
-
-	return (
-		<div>
-			<FaUserAlt />
-
-			<form onSubmit={handleSubmit}>
-				<label>Edit Details</label>
-				<input type="text" autoComplete="off" />
-				<input type="text" autoComplete="off" />
-				<input type="submit" value="Submit" />
-			</form>
-		</div>
-	);
+	return <Form editDetails={editDetails} id={id} first_name={first_name} last_name={last_name} title="Edit" />;
 }

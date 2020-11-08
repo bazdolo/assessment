@@ -1,21 +1,25 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import ListItem from '../ListItem/ListItem';
+import { NavLink } from 'react-router-dom';
 import styles from './UserList.module.css';
 import ReactPaginate from 'react-paginate';
 import { getUsers } from '../../WebHelpers';
+import { FaPlusCircle } from 'react-icons/fa';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Loader from 'react-loader-spinner';
 
 const NUM_OF_USERS = 10;
 
 export default function UserList() {
 	const [ currentPage, setCurrentPage ] = useState(0);
 	const [ users, setUsers ] = useState([]);
+	const [ loading, setLoading ] = useState(true);
 
 	useEffect(() => {
 		const fetchUsers = async () => {
 			const results = await getUsers();
-			console.log(results.slice(0, 10));
-
 			setUsers(results);
+			setLoading(false);
 		};
 		fetchUsers();
 	}, []);
@@ -30,24 +34,31 @@ export default function UserList() {
 
 	return (
 		<Fragment>
-			<div className={styles.list_container}>
-				{currentPageData.map((user) => <ListItem user={user} key={user.id} />)}
-			</div>
-			<div className="pagination" style={{ width: '100%' }}>
-				<ReactPaginate
-					previousLabel={'<'}
-					nextLabel={'>'}
-					breakLabel={'...'}
-					// breakClassName={'break-me'}
-					pageCount={Math.ceil(users.length / 10)}
-					// marginPagesDisplayed={2}
-					pageRangeDisplayed={2}
-					onPageChange={handlePageClick}
-					// containerClassName={'pagination'}
-					// subContainerClassName={'pages pagination'}
-					activeClassName={'page-active'}
-				/>
-			</div>
+			{loading ? (
+				<Loader type="Watch" color="#816541" height={100} width={100} />
+			) : (
+				<Fragment>
+					<div className={styles.add_new}>
+						Add New User<NavLink to="/new">
+							<FaPlusCircle />
+						</NavLink>
+					</div>
+					<div className={styles.list_container}>
+						{currentPageData.map((user) => <ListItem user={user} key={user.id} />)}
+					</div>
+					<div className="pagination" style={{ width: '100%' }}>
+						<ReactPaginate
+							previousLabel={'<'}
+							nextLabel={'>'}
+							breakLabel={'...'}
+							pageCount={Math.ceil(users.length / 10)}
+							pageRangeDisplayed={2}
+							onPageChange={handlePageClick}
+							activeClassName={'page-active'}
+						/>
+					</div>
+				</Fragment>
+			)}
 		</Fragment>
 	);
 }

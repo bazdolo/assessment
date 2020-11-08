@@ -1,7 +1,17 @@
 .list_container {
 	border: 2px solid #e0c385;
-	max-height: 600px;
+	max-height: 500px;
 	width: 50%;
 	min-width: 300px;
 	overflow-y: scroll;
+}
+
+.add_new {
+	margin-top: 10px;
+	display: flex;
+	justify-content: flex-end;
+	width: 50%;
+	min-width: 300px;
+	border: 2px solid #e0c385;
+	border-bottom: 0;
 }

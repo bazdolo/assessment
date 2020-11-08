@@ -22,11 +22,14 @@ input {
 
 span {
 	margin-left: 20px;
-	margin-top: 28px;
+	margin-top: 30px;
 	position: absolute;
 }
 
 .submit {
 	background-color: hsl(32deg 33% 33%);
 	color: #f2dfa6;
+	font-family: Chicle;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Chicle&display=swap');

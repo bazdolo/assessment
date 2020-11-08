@@ -1,0 +1,34 @@
+.alert_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 150px;
+	display: flex;
+	background-color: #f2dfa6;
+	margin: 1rem;
+	justify-content: space-around;
+	align-items: center;
+	border-radius: 0.75rem;
+	height: 100px;
+	z-index: 500;
+	border: 2px solid #e0c385;
+	position: fixed;
+	left: 49%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+button {
+	background-color: hsl(32deg 33% 33%);
+	color: #f2dfa6;
+	border-radius: 20px;
+	font-weight: bold;
+	font-size: calc(4px + 2vmin);
+	text-align: center;
+	border: 2px solid #e0c385;
+	font-family: Chicle;
+	padding: 5px 10px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Chicle&display=swap');
