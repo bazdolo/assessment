@@ -35,3 +35,16 @@
 .link {
 	color: hsl(32deg 33% 33%);
 }
+
+.user_icon svg {
+	font-size: 60px;
+}
+
+@media only screen and (max-width: 600px) {
+	.user_icon svg {
+		font-size: 40px;
+	}
+	.list_item {
+		height: 150px;
+	}
+}

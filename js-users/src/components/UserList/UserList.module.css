@@ -7,11 +7,26 @@
 }
 
 .add_new {
-	margin-top: 10px;
+	/* margin-top: 50px; */
 	display: flex;
 	justify-content: flex-end;
 	width: 50%;
 	min-width: 300px;
 	border: 2px solid #e0c385;
 	border-bottom: 0;
+}
+
+.newuser_link {
+	display: flex;
+	color: #99784d;
+	align-items: center;
+	padding-right: 5px;
+}
+
+label {
+	padding: 5px;
+}
+
+a {
+	text-decoration: none;
 }

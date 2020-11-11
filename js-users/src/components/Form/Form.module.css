@@ -26,6 +26,12 @@ span {
 	position: absolute;
 }
 
+.button_control {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
 .submit {
 	background-color: hsl(32deg 33% 33%);
 	color: #f2dfa6;

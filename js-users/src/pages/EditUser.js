@@ -7,5 +7,9 @@ export default function EditUser() {
 	const { state: { first_name, last_name } } = useLocation();
 	const { id } = useParams();
 
-	return <Form editDetails={editDetails} id={id} first_name={first_name} last_name={last_name} title="Edit" />;
+	return (
+		<div data-testid="edit-user-screen">
+			<Form editDetails={editDetails} id={id} first_name={first_name} last_name={last_name} title="Edit User" />
+		</div>
+	);
 }

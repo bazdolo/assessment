@@ -9,7 +9,7 @@ import './App.css';
 function App() {
 	return (
 		<div className="App">
-			<header>
+			<header data-testid="header">
 				<h1>Retro User List</h1>
 			</header>
 			<Router>

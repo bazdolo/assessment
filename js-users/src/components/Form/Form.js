@@ -7,22 +7,38 @@ import styles from './Form.module.css';
 export default function Form({ addNewUser, editDetails, id, first_name, last_name, title }) {
 	const [ firstNameError, setFirstNameError ] = useState('');
 	const [ lastNameError, setLastNameError ] = useState('');
-	const [ showAlert, setAlert ] = useState(false);
+	const [ showAlert, setAlert ] = useState({ show: false, message: '' });
+	const [ firstName, setFirstName ] = useState(first_name || '');
+	const [ lastName, setLastName ] = useState(last_name || '');
 
 	const history = useHistory();
+
+	const firstNameOnChange = (e) => {
+		setFirstName(e.target.value);
+	};
+
+	const lastNameOnChange = (e) => {
+		setLastName(e.target.value);
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (editDetails) {
-			const { first_name, last_name } = await editDetails(id, e.target[0].value, e.target[1].value, setAlert);
-			if (first_name) setFirstNameError(first_name);
-			if (last_name) setLastNameError(last_name);
+			const response = await editDetails(id, firstName, lastName, setAlert);
+
+			if (response && response.first_name) setFirstNameError(response.first_name);
+			if (response && response.last_name) setLastNameError(response.last_name);
+			if (response && response.first_name === 'all good!') setAlert({ show: true, message: 'User updated' });
+			if (response === 'Error!') setAlert({ show: true, message: 'Connection Error' });
 		}
 
 		if (addNewUser) {
-			const { first_name, last_name } = await addNewUser(e.target[0].value, e.target[1].value, setAlert);
-			setFirstNameError(first_name);
-			setLastNameError(last_name);
+			const response = await addNewUser(firstName, lastName, setAlert);
+
+			if (response && response.first_name) setFirstNameError(response.first_name);
+			if (response && response.last_name) setLastNameError(response.last_name);
+			if (response && response.first_name === 'all good!') setAlert({ show: true, message: 'User created' });
+			if (response === 'Error!') setAlert({ show: true, message: 'Connection Error' });
 		}
 	};
 
@@ -32,27 +48,39 @@ export default function Form({ addNewUser, editDetails, id, first_name, last_nam
 
 	return (
 		<Fragment>
-			<div>
-				<FaArrowAltCircleLeft onClick={goBackHandler} />
-			</div>
-			<form onSubmit={handleSubmit}>
-				<FaUserAlt size={'60'} />
-				<h2>{title} Details</h2>
+			<FaUserAlt size={'60'} />
+			<h2>{title}</h2>
+			<form data-testid={'form-' + title} onSubmit={handleSubmit}>
 				<label>First Name</label>
 				<div className={styles.input_wrapper}>
-					<input className={styles.textInput} type="text" autoComplete="off" defaultValue={first_name} />
+					<input
+						className={styles.textInput}
+						type="text"
+						autoComplete="off"
+						onChange={firstNameOnChange}
+						defaultValue={first_name ? first_name : ''}
+					/>
 					<span>{firstNameError}</span>
 				</div>
 
 				<label>Last Name</label>
 				<div className={styles.input_wrapper}>
-					<input className={styles.textInput} type="text" autoComplete="off" defaultValue={last_name} />
+					<input
+						className={styles.textInput}
+						type="text"
+						autoComplete="off"
+						onChange={lastNameOnChange}
+						defaultValue={last_name ? last_name : ''}
+					/>
 					<span>{lastNameError}</span>
 				</div>
-
-				<input className={styles.submit} type="submit" value="Submit" />
+				<div className={styles.button_control}>
+					<FaArrowAltCircleLeft data-testid="back-button" size="30" onClick={goBackHandler} />
+					<div style={{ width: '10px' }} />
+					<input data-testid="submit-button" className={styles.submit} type="submit" value="Submit" />
+				</div>
 			</form>
-			{showAlert ? <Alert /> : []}
+			{showAlert.show ? <Alert message={showAlert.message} /> : []}
 		</Fragment>
 	);
 }

@@ -12,6 +12,7 @@ const NUM_OF_USERS = 10;
 
 export default function UserList() {
 	const [ currentPage, setCurrentPage ] = useState(0);
+	const [ pageData, setPageData ] = useState();
 	const [ users, setUsers ] = useState([]);
 	const [ loading, setLoading ] = useState(true);
 
@@ -24,34 +25,44 @@ export default function UserList() {
 		fetchUsers();
 	}, []);
 
+	useEffect(
+		() => {
+			const offset = currentPage * NUM_OF_USERS;
+			const currentPageData = users ? users.slice(offset, offset + NUM_OF_USERS) : [];
+			setPageData(currentPageData);
+		},
+		[ users, currentPage ]
+	);
+
 	const handlePageClick = ({ selected }) => {
 		setCurrentPage(selected);
 	};
 
-	const offset = currentPage * NUM_OF_USERS;
-
-	const currentPageData = users.slice(offset, offset + NUM_OF_USERS);
-
 	return (
 		<Fragment>
 			{loading ? (
-				<Loader type="Watch" color="#816541" height={100} width={100} />
+				<div data-testid="loader">
+					<Loader type="Watch" color="#816541" height={100} width={100} />
+				</div>
 			) : (
 				<Fragment>
 					<div className={styles.add_new}>
-						Add New User<NavLink to="/new">
-							<FaPlusCircle />
+						<NavLink data-testid="add-new-link" to="/new">
+							<div className={styles.newuser_link}>
+								<label data-testid="newuser-label">Add New User</label>
+								<FaPlusCircle />
+							</div>
 						</NavLink>
 					</div>
 					<div className={styles.list_container}>
-						{currentPageData.map((user) => <ListItem user={user} key={user.id} />)}
+						{pageData.map((user) => <ListItem user={user} key={user.id} />)}
 					</div>
 					<div className="pagination" style={{ width: '100%' }}>
 						<ReactPaginate
 							previousLabel={'<'}
 							nextLabel={'>'}
 							breakLabel={'...'}
-							pageCount={Math.ceil(users.length / 10)}
+							pageCount={users ? Math.ceil(users.length / 10) : 0}
 							pageRangeDisplayed={2}
 							onPageChange={handlePageClick}
 							activeClassName={'page-active'}
